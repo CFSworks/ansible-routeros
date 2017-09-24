@@ -1,8 +1,33 @@
 language: python
+sudo: false
+dist: trusty
 python:
   - "2.7"
   - "3.4"
+
+addons:
+  apt:
+    packages:
+    - qemu
+
 install:
   - pip install ansible librouteros pylint
+  - wget -O chr.vdi https://download2.mikrotik.com/routeros/6.38.1/chr-6.38.1.vdi
+
 script:
+  # Lint
   - pylint library/*.py
+
+  # Start up RouterOS in QEMU
+  - qemu-system-x86_64 -hda chr.vdi -nographic -device e1000,netdev=net0
+                       -netdev user,id=net0,net=192.168.254.0/24,dhcpstart=192.168.254.10,hostfwd=tcp:127.0.0.1:8728-:8728 &
+
+  # Wait for it to be ready
+  - >
+    python -c "while True:
+        try: __import__('librouteros').connect('127.0.0.1','admin','')
+        except: continue
+        else: break"
+
+  # Run Ansible test:
+  - ansible-playbook test/integration/placeholder.yml

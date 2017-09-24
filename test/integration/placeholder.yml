@@ -1,0 +1,5 @@
+- name: Placeholder
+  hosts: localhost
+  tasks:
+    - debug:
+        msg: This is a placeholder
