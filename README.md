@@ -5,11 +5,11 @@ Overview
 --------
 
 This repository includes the following Ansible modules:
-* `ros_facts`: Return `ansible_facts` for the device
-* `ros_copy`: Copy files from the local machine to the device
-* `ros_fetch`: Copy files from the device to the local machine
-* `ros_command`: Run a RouterOS command against the API directly
-* `ros_item`: Create/update/delete configuration items in the API hierarchy
+* `routeros_facts`: Return `ansible_facts` for the device
+* `routeros_copy`: Copy files from the local machine to the device
+* `routeros_fetch`: Copy files from the device to the local machine
+* `routeros_command`: Run a RouterOS command against the API directly
+* `routeros_item`: Create/update/delete configuration items in the API hierarchy
 
 Requirements
 ------------
