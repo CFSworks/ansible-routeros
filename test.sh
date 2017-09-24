@@ -43,4 +43,4 @@ EOF
 cd ..
 export ANSIBLE_LIBRARY=$PWD/library
 export PYTHONPATH=$ANSIBLE_LIBRARY
-ansible-playbook -i temp/inventory test/integration/placeholder.yml
+ansible-playbook -i temp/inventory test/integration/routeros.yaml
