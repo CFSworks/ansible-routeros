@@ -17,4 +17,22 @@ try:
 except ImportError:
     HAS_LIB = False
 
+from ansible.module_utils.basic import env_fallback
+
+routeros_provider_spec = {
+    'host': dict(),
+    'port': dict(type='int'),
+
+    'username': dict(fallback=(env_fallback, ['ANSIBLE_NET_USERNAME'])),
+    'password': dict(fallback=(env_fallback, ['ANSIBLE_NET_PASSWORD']), no_log=True),
+    'ssh_keyfile': dict(fallback=(env_fallback, ['ANSIBLE_NET_SSH_KEYFILE']), type='path'),
+
+    'timeout': dict(type='int'),
+
+    'transport': dict(default='cli', choices=['cli', 'api'])
+}
+routeros_argument_spec = {
+    'provider': dict(type='dict', options=routeros_provider_spec),
+}
+
 del librouteros

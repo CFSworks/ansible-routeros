@@ -1,2 +1,2 @@
 [BASIC]
-disable=missing-docstring,invalid-name
+disable=missing-docstring,invalid-name,wrong-import-position
