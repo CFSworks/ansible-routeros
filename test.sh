@@ -36,7 +36,7 @@ echo ...DONE
 # Generate an inventory file
 cat > inventory <<EOF
 [routeros]
-localhost ansible_connection=local
+localhost ansible_connection=local ansible_python_interpreter=$(which python)
 EOF
 
 # Fire off Ansible
