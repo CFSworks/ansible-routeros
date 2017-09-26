@@ -1,2 +1,2 @@
 [BASIC]
-disable=missing-docstring,invalid-name,wrong-import-position
+disable=missing-docstring,invalid-name,wrong-import-position,too-many-locals,too-many-branches,too-few-public-methods,unused-variable,no-self-use,ungrouped-imports
