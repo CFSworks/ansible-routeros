@@ -35,6 +35,10 @@ echo ...DONE
 
 # Generate an inventory file
 cat > inventory <<EOF
+[routeros:vars]
+api='{ "host": "{{ inventory_hostname }}", "username": "admin", "password": "", "transport": "api" }'
+cli='{ "host": "{{ inventory_hostname }}", "username": "admin", "password": "", "transport": "cli" }'
+
 [routeros]
 localhost ansible_connection=local ansible_python_interpreter=$(which python)
 EOF

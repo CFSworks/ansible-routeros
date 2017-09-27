@@ -16,6 +16,14 @@
         test_failed: false
         failed_modules: []
 
+    - block:
+      - include_role:
+          name: routeros_command
+        when: "limit_to in ['*', 'routeros_command']"
+      rescue:
+        - set_fact:
+            failed_modules: "{{ failed_modules }} + [ 'routeros_command' ]"
+            test_failed: true
 
 
 ###########

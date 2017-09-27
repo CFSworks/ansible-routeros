@@ -1,0 +1,30 @@
+---
+- debug: msg="START api/output.yaml"
+
+- name: get output for single command
+  routeros_command:
+    commands: /system resource print
+    provider: "{{ api }}"
+  register: result
+
+- assert:
+    that:
+      - result.changed == false
+      - result.stdout is defined
+      - result.stdout_lines is defined
+
+- name: get output for multiple commands
+  routeros_command:
+    commands:
+      - /system resource print
+      - /interface print
+    provider: "{{ api }}"
+  register: result
+
+- assert:
+    that:
+      - result.changed == false
+      - result.stdout is defined
+      - result.stdout | length == 2
+
+- debug: msg="END api/output.yaml"
