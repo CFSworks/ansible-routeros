@@ -201,7 +201,7 @@ class Api:
         try:
             results = self._api(**api_cmd)
         except librouteros.exceptions.LibError as e:
-            return 1, '', e.message
+            return 1, '', str(e)
 
         return 0, json.dumps(results), ''
 
