@@ -15,7 +15,7 @@ install:
 
 script:
   # Lint
-  - PYTHONPATH=library pylint action_plugins/*.py library/*.py
+  - PYTHONPATH=library pylint *_plugins/*.py library/*.py
 
   # Run Ansible integration test
   - ./test.sh
