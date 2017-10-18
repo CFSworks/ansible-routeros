@@ -27,9 +27,10 @@ trap cleanup EXIT
 
 # Wait for it to become available
 echo Waiting for RouterOS to boot...
-python -c "while True:
-    try: __import__('librouteros').connect('127.0.0.1','admin','')
-    except: continue
+python -c "import librouteros
+while True:
+    try: librouteros.connect('127.0.0.1','admin','')
+    except librouteros.exceptions.ConnectionError: continue
     else: break"
 echo ...DONE
 
