@@ -7,7 +7,6 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
-import os
 import re
 
 from ansible.plugins.terminal import TerminalBase
@@ -29,6 +28,8 @@ class TerminalModule(TerminalBase):
     ]
 
     def on_open_shell(self):
+        # pylint: disable=protected-access
+
         try:
             if 'software license?' in self._connection._last_response:
                 self._connection._shell.sendall(' ') # skip without answering
