@@ -50,6 +50,11 @@ class ActionModule(_ActionModule):
             pc.private_key_file = provider['ssh_keyfile'] or self._play_context.private_key_file
             pc.timeout = int(provider['timeout'] or C.PERSISTENT_COMMAND_TIMEOUT)
             display.vvv('using connection plugin %s' % pc.connection, pc.remote_addr)
+
+            # RouterOS allows colors, terminal detection ANSI sequences, etc.
+            # to be turned off in a weird way: appending flags to the username
+            pc.remote_user += '+cet'
+
             connection = self._shared_loader_obj.connection_loader.get('persistent', pc, sys.stdin)
 
             socket_path = connection.run()
