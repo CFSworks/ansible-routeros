@@ -38,7 +38,7 @@ echo ...DONE
 cat > inventory <<EOF
 [routeros:vars]
 api='{ "host": "{{ inventory_hostname }}", "username": "admin", "password": "", "transport": "api" }'
-cli='{ "host": "{{ inventory_hostname }}", "port": 22122, "username": "admin", "password": "", "transport": "cli" }'
+cli='{ "host": "{{ inventory_hostname }}", "port": 22122, "username": "admin", "password": "n/a", "transport": "cli" }'
 
 [routeros]
 localhost ansible_connection=local ansible_python_interpreter=$(which python)
