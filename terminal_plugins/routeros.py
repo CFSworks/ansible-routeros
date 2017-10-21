@@ -31,8 +31,8 @@ class TerminalModule(TerminalBase):
         # pylint: disable=protected-access
 
         try:
-            if 'software license?' in self._connection._last_response:
-                self._connection._shell.sendall(' ') # skip without answering
+            if b'software license?' in self._connection._last_response:
+                self._connection._shell.sendall(b' ') # skip without answering
                 self._connection.receive()
         except AnsibleConnectionFailure:
             raise AnsibleConnectionFailure('unable to bypass license prompt')
