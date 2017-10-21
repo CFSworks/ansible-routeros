@@ -18,4 +18,7 @@ script:
   - PYTHONPATH=library pylint *_plugins/*.py library/*.py
 
   # Run Ansible integration test
-  - ./test.sh
+  - ANSIBLE_LOG_PATH=/tmp/ansible.log ./test.sh
+
+after_failure:
+  - cat /tmp/ansible.log
